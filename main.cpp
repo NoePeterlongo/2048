@@ -19,19 +19,30 @@ int main(int argc, char *argv[])
         return -1;
 
     Plateau p(4);
-    p.Set(0,0,2);
+
+    //Tests des mouvements
+    p.Set(0,0,4);
     p.Set(1,0,4);
     p.Set(3,0,4);
-    p.Set(0,1,0);
+    p.Set(0,1,8);
     p.Set(1,1,4);
     p.Set(3,1,4);
     p.Set(0,2,0);
     p.Set(1,2,4);
     p.Set(3,2,8);
+    p.Set(3,0,8);
+    p.Set(3,1,16);
+    p.Set(3,3,8);
     p.Print();
     cout<<endl;
-    p.Mouvement(HAUT);
+    p.Mouvement(BAS);
+    p.AjouterValeurAleatoire();
     p.Print();
+    p.Mouvement(DROITE);
+    p.Print();
+
+
+
 
     return app.exec();
 }
