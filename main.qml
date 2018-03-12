@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
+import QtQuick.Controls 2.2
 
 Window {
     id: window
@@ -181,5 +182,25 @@ Window {
             font.pixelSize: 21
             verticalAlignment: Text.AlignVCenter
         }
+    }
+
+    Button {
+        id: button
+        x: 297
+        y: 130
+        width: 105
+        height: 50
+        text: qsTr("Nouvelle partie")
+        font.pointSize: 10
+    }
+
+    Button {
+        id: button1
+        x: 410
+        y: 130
+        width: 105
+        height: 50
+        text: qsTr("Annuler coup")
+        font.pointSize: 10
     }
 }
