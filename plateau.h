@@ -13,7 +13,7 @@ private:
     int **table;
 public:
     Plateau(int Taille);//constructeur classique
-    //Plateau(const Plateau &autrePlateau);//constructeur de recopie
+    Plateau(const Plateau &autrePlateau);//constructeur de recopie
     //~Plateau();
 
 

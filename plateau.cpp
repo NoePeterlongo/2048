@@ -16,6 +16,20 @@ Plateau::Plateau(int Taille = 4)
     }
 }
 
+Plateau::Plateau(const Plateau &autrePlateau)
+{
+    taille = autrePlateau.taille;
+
+    //allocation dynamique de la table et initialisation
+    table = new int*[taille];
+    for(int i = 0; i<taille; i++)
+    {
+        table[i] = new int[taille];
+        for(int j = 0; j < taille; j++)
+            table[i][j] = autrePlateau.table[i][j];
+    }
+}
+
 bool Plateau::Set(int ligne, int colonne, int valeur)
 {
     if(ligne>=taille || ligne<0 || colonne<0 || colonne>=taille)
@@ -68,6 +82,59 @@ bool Plateau::Mouvement(int mouvement)
                         {
                             //Pour chaque case, on va chercher la premiere case non nulle qui la suit
                             for(int j = i+1; j<taille; j++)
+                                if(table[j][col] != 0)
+                                {
+                                    Set(i,col, table[j][col]);
+                                    Set(j,col, 0);
+                                    break;
+                                }
+                        }
+                    }
+                }
+                else
+                    continuer = false;
+            }
+        }
+        break;
+
+    case BAS:
+        for(int col = 0; col<taille; col++)
+        {
+            bool continuer = true;
+
+            //On commence par coller toutes les cases de la colonne vers le bas
+            for(int i = taille-1; i>=1; i--)
+            {
+                //Pour chaque case nulle, on va chercher la premiere case non nulle qui la 'suit'
+                if(table[i][col]==0)
+                    for(int j = i-1; j>=0; j--)
+                        if(table[j][col] != 0)
+                        {
+                            Set(i,col, table[j][col]);
+                            Set(j,col, 0);
+                            break;
+                        }
+            }
+
+            //maintenant on traite le tableau
+            int ligne = taille-1;
+            while(continuer)
+            {
+                if(ligne>=1 && table[ligne][col] != 0)
+                {
+                    if(table[ligne][col] != table[ligne-1][col])
+                        ligne--;
+                    else
+                    {
+                        quelqueChoseAChange = true;
+                        Set(ligne, col, 2*table[ligne][col]);
+                        Set(ligne-1, col, 0);
+
+                        //Maintenant on colle toutes les cases vers le bas
+                        for(int i = ligne-1; i>=1; i--)
+                        {
+                            //Pour chaque case, on va chercher la premiere case non nulle qui la suit
+                            for(int j = i-1; j>=0; j--)
                                 if(table[j][col] != 0)
                                 {
                                     Set(i,col, table[j][col]);
