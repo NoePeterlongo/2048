@@ -5,7 +5,7 @@ Window {
     id: window
     visible: true
     width: 600
-    height: 720
+    height: 680
     color: '#F6E5C2'
     property alias grid: grid
     title: qsTr("2048")
