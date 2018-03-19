@@ -52,7 +52,7 @@ void Jeu::NouveauCoup(int deplacement)
     for(int i = 1; i<5;i++)
     {
         Plateau plateauTemp = Plateau(plateau);//On recopie le plateau
-        if(plateauTemp.Mouvement(i))//si ça change quelque chose
+        if(plateauTemp.Mouvement(i, &scoreDebug))//si ça change quelque chose
             gameover = false;
     }
     if(gameover)

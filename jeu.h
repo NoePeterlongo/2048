@@ -23,7 +23,8 @@ public:
     Q_INVOKABLE void mvmtGauche();
 
 private:
-    int score = 11;
+    int score = 0;
+    int scoreDebug = 0;
     Plateau plateau;
 
 
