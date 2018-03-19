@@ -18,6 +18,7 @@ int main(int argc, char *argv[])
     if (engine.rootObjects().isEmpty())
         return -1;
 
+    /*
     Plateau p(4);
 
     //Tests des mouvements
@@ -40,8 +41,9 @@ int main(int argc, char *argv[])
     p.Print();
     p.Mouvement(DROITE);
     p.Print();
-
-
+*/
+    //Jeu jeu();
+    //engine.rootContext()->setContextProperty("jeu", &jeu);
 
 
     return app.exec();
