@@ -20,7 +20,7 @@ public:
 
     //Applique un mouvement au plateau, le paramètre peut être BAS, HAUT, GAUCHE, ou DROITE, des constantes prédéfinies
     //Cette fonction renvoie un booléen : true si le mouvement a modifié le plateau
-    bool Mouvement(int mouvement);
+    bool Mouvement(int mouvement, int* score);
 
 
     bool Set(int ligne, int colonne, int valeur);
