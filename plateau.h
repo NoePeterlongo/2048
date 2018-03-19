@@ -16,6 +16,7 @@ public:
     Plateau(int Taille);//constructeur classique
     Plateau(const Plateau &autrePlateau);//constructeur de recopie
     ~Plateau();
+    void Init();
 
     //Applique un mouvement au plateau, le paramètre peut être BAS, HAUT, GAUCHE, ou DROITE, des constantes prédéfinies
     //Cette fonction renvoie un booléen : true si le mouvement a modifié le plateau
@@ -23,8 +24,8 @@ public:
 
 
     bool Set(int ligne, int colonne, int valeur);
+    int getCase(int ligne, int colonne);
     void AjouterValeurAleatoire();
-    //int** GetTable();
     void Print();
 
 };
