@@ -31,8 +31,26 @@ Window {
             transformOrigin: Item.Center
             rows: 4
             columns: 4
+            focus : true
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
+
+            Keys.onPressed: {
+              switch (event.key) {
+                case Qt.Key_Up:
+                  jeu.mvmtHaut();
+                  break;
+                case Qt.Key_Down:
+                  jeu.mvmtBas();
+                  break;
+                case Qt.Key_Left:
+                  jeu.mvmtGauche();
+                  break;
+                case Qt.Key_Right:
+                  jeu.mvmtDroite();
+                  break;
+              }
+            }
 
             Tuile {
                 id: tuile1
