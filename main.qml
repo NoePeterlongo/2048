@@ -145,7 +145,8 @@ Window {
             y: 22
             width: 105
             height: 35
-            text: qsTr("0")
+            //text: qsTr("0")
+            text: jeu.scoreQML
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 21

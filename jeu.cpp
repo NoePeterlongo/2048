@@ -2,7 +2,7 @@
 
 Jeu::Jeu(QObject *parent) : QObject(parent)
 {
-
+    scoreChanged();
 }
 
 void Jeu::InitialiserPartie()
