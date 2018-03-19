@@ -32,6 +32,13 @@ Plateau::Plateau(const Plateau &autrePlateau)
     }
 }
 
+Plateau::~Plateau()
+{
+    for(int i = 0; i<taille; i++)
+        delete[] table[i];
+    delete[] table;
+}
+
 bool Plateau::Set(int ligne, int colonne, int valeur)
 {
     if(ligne>=taille || ligne<0 || colonne<0 || colonne>=taille)
@@ -40,6 +47,7 @@ bool Plateau::Set(int ligne, int colonne, int valeur)
     table[ligne][colonne] = valeur;
     return true;
 }
+
 
 bool Plateau::Mouvement(int mouvement)
 {

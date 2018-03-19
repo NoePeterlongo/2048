@@ -185,7 +185,7 @@ Window {
     }
 
     Button {
-        id: button
+        id: buttonNouvellePartie
         x: 297
         y: 130
         width: 105
@@ -195,7 +195,7 @@ Window {
     }
 
     Button {
-        id: button1
+        id: buttonAnnuler
         x: 410
         y: 130
         width: 105

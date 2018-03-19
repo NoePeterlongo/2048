@@ -15,10 +15,13 @@ private:
 public:
     Plateau(int Taille);//constructeur classique
     Plateau(const Plateau &autrePlateau);//constructeur de recopie
-    //~Plateau();
+    ~Plateau();
+
+    //Applique un mouvement au plateau, le paramètre peut être BAS, HAUT, GAUCHE, ou DROITE, des constantes prédéfinies
+    //Cette fonction renvoie un booléen : true si le mouvement a modifié le plateau
+    bool Mouvement(int mouvement);
 
 
-    bool Mouvement(int mouvement);//est appelée avec un paramètre HAUT,BAS... et renvoie true si cela a changé quelque chose
     bool Set(int ligne, int colonne, int valeur);
     void AjouterValeurAleatoire();
     //int** GetTable();
