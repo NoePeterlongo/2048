@@ -32,6 +32,16 @@ Plateau::Plateau(const Plateau &autrePlateau)
     }
 }
 
+void Plateau::Init()//remise à 0, ajout d'une case aléatoire
+{
+    for(int i = 0; i<taille; i++)
+    {
+        for(int j = 0; j < taille; j++)
+            table[i][j] = 0;
+    }
+    AjouterValeurAleatoire();
+}
+
 Plateau::~Plateau()
 {
     for(int i = 0; i<taille; i++)
@@ -293,6 +303,11 @@ void Plateau::AjouterValeurAleatoire()
     while(table[ligne][colonne] != 0);
 
     table[ligne][colonne] = nombre;
+}
+
+int Plateau::getCase(int ligne, int colonne)
+{
+    return table[ligne][colonne];
 }
 
 void Plateau::Print()

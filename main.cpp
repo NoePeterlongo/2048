@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <iostream>
 #include "plateau.h"
+#include "jeu.h"
 
 using namespace std;
 
@@ -41,7 +42,9 @@ int main(int argc, char *argv[])
     p.Print();
     p.Mouvement(DROITE);
     p.Print();
-*/
+    cout<<endl;
+    cout<<p.getCase(3,3);*/
+
     //Jeu jeu();
     //engine.rootContext()->setContextProperty("jeu", &jeu);
 
