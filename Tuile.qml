@@ -5,6 +5,8 @@ Item {
     width: 100
     height: 100
 
+    property string valeur: qsTr("Text")
+
     Rectangle {
         id: rectangle
         x: 15
@@ -23,7 +25,7 @@ Item {
         y: -55
         width: 100
         height: 100
-        text: qsTr("Text")
+        text: valeur
         font.strikeout: false
         font.underline: false
         font.italic: false

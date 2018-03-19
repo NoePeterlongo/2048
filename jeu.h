@@ -10,11 +10,10 @@ class Jeu : public QObject
 public:
     explicit Jeu(QObject *parent = nullptr);
     Q_INVOKABLE void InitialiserPartie();
-    Q_INVOKABLE void afficherPlateau();
-    //Q_PROPERTY(QString caseQML READ readCase(i,j) NOTIFY caseChanged(i,j));
+    Q_PROPERTY(QList<QString> plateauQML READ readPlateau NOTIFY plateauChanged);
     Q_PROPERTY(QString scoreQML READ readScore NOTIFY scoreChanged);
 
-    QString readCase(int i, int j);
+    QList<QString> readPlateau();
     QString readScore();
     void NouveauCoup(int deplacement);
 
@@ -26,7 +25,7 @@ private:
 
 signals:
 
-    void caseChanged(int i, int j);
+    void plateauChanged();
     void scoreChanged();
 
 public slots:

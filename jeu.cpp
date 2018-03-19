@@ -3,30 +3,37 @@
 
 Jeu::Jeu(QObject *parent) : QObject(parent)
 {
-    scoreChanged();
+    InitialiserPartie();
 }
 
 void Jeu::InitialiserPartie()
 {
+    plateau.Init();
     score = 0;
     scoreChanged();
+    plateauChanged();
 
 }
 
-void Jeu::afficherPlateau()
+
+QList<QString> Jeu::readPlateau()
 {
+    QList<QString> L;
     for (int i=0; i<plateau.getTaille(); i++)
     {
         for (int j=0; j<plateau.getTaille(); j++)
         {
-            caseChanged(i,j);
+            int tuile=plateau.getCase(i,j);
+            if (tuile!=0)
+            {
+                L.append(QString::number(tuile));
+            }
+            else{
+                L.append(" ");
+            }
         }
     }
-}
-
-QString Jeu::readCase(int i, int j)
-{
-    return QString::number(plateau.getCase(i,j));
+    return L;
 }
 
 QString Jeu::readScore()
@@ -37,6 +44,8 @@ QString Jeu::readScore()
 void Jeu::NouveauCoup(int deplacement)
 {
     plateau.Mouvement(deplacement);
+    plateauChanged();
+    scoreChanged();
     //maintenant on regarde si on est en gameover
     bool gameover = true;
     for(int i = 1; i<5;i++)
