@@ -11,9 +11,12 @@ public:
     explicit Jeu(QObject *parent = nullptr);
     Q_INVOKABLE void InitialiserPartie();
     Q_INVOKABLE void afficherPlateau();
-    Q_PROPERTY(QString caseQML READ readCase(i,j) NOTIFY caseChanged(i,j));
+    //Q_PROPERTY(QString caseQML READ readCase(i,j) NOTIFY caseChanged(i,j));
+    Q_PROPERTY(QString scoreQML READ readScore NOTIFY scoreChanged);
 
     QString readCase(int i, int j);
+    QString readScore();
+
 
 
 private:
@@ -24,6 +27,7 @@ private:
 signals:
 
     void caseChanged(int i, int j);
+    void scoreChanged();
 
 public slots:
 };

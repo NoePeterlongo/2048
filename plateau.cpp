@@ -4,9 +4,9 @@
 #include <time.h>
 using namespace std;
 
-Plateau::Plateau(int Taille = 4)
+Plateau::Plateau()
 {
-    taille = Taille;
+    taille = 4;
 
     //allocation dynamique de la table et initialisation
     table = new int*[taille];
@@ -308,6 +308,11 @@ void Plateau::AjouterValeurAleatoire()
 int Plateau::getCase(int ligne, int colonne)
 {
     return table[ligne][colonne];
+}
+
+int Plateau::getTaille()
+{
+    return taille;
 }
 
 void Plateau::Print()

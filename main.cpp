@@ -14,8 +14,8 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    Jeu jeu();
-    //engine.rootContext()->setContextProperty("jeu", &jeu);
+    Jeu jeu;
+    engine.rootContext()->setContextProperty("jeu", &jeu);
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 

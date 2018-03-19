@@ -13,7 +13,7 @@ private:
     int **table;
     int pourcentageDe2 = 90;
 public:
-    Plateau(int Taille);//constructeur classique
+    Plateau();//constructeur classique
     Plateau(const Plateau &autrePlateau);//constructeur de recopie
     ~Plateau();
     void Init();
@@ -25,6 +25,7 @@ public:
 
     bool Set(int ligne, int colonne, int valeur);
     int getCase(int ligne, int colonne);
+    int getTaille();
     void AjouterValeurAleatoire();
     void Print();
 

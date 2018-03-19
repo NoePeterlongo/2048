@@ -13,9 +13,9 @@ void Jeu::InitialiserPartie()
 
 void Jeu::afficherPlateau()
 {
-    for (int i=0; i<plateau.getTaille(), i++)
+    for (int i=0; i<plateau.getTaille(); i++)
     {
-        for (int j=0; j<plateau.getTaille(), j++)
+        for (int j=0; j<plateau.getTaille(); j++)
         {
             caseChanged(i,j);
         }
@@ -25,4 +25,9 @@ void Jeu::afficherPlateau()
 QString Jeu::readCase(int i, int j)
 {
     return QString::number(plateau.getCase(i,j));
+}
+
+QString Jeu::readScore()
+{
+    return QString::number(score);
 }
