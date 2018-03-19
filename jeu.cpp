@@ -16,7 +16,7 @@ void Jeu::afficherPlateau()
     {
         for (int j=0; j<plateau.getTaille(), j++)
         {
-
+            caseChanged(i,j);
         }
     }
 }
