@@ -193,6 +193,7 @@ Window {
         height: 50
         text: qsTr("Nouvelle partie")
         font.pointSize: 10
+        onClicked: jeu.InitialiserPartie()
     }
 
     Button {
