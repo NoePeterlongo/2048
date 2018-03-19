@@ -96,7 +96,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                     {
                         quelqueChoseAChange = true;
                         Set(ligne, col, 2*table[ligne][col]);
-                        *score += 2*table[ligne][col];
+                        *score += table[ligne][col];
                         Set(ligne+1, col, 0);
 
                         //Maintenant on colle toutes les cases vers le haut
@@ -112,7 +112,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                                 }
                         }
                         //On recommence à la première ligne
-                        ligne = 0;
+                        //ligne = 0;
                     }
                 }
                 else
@@ -152,7 +152,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                     {
                         quelqueChoseAChange = true;
                         Set(ligne, col, 2*table[ligne][col]);
-                        *score += 2*table[ligne][col];
+                        *score += table[ligne][col];
                         Set(ligne-1, col, 0);
 
                         //Maintenant on colle toutes les cases vers le bas
@@ -167,7 +167,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                                     break;
                                 }
                         }
-                        ligne = taille-1;
+                        //ligne = taille-1;
                     }
                 }
                 else
@@ -207,7 +207,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                     {
                         quelqueChoseAChange = true;
                         Set(li, colonne, 2*table[li][colonne]);
-                        *score += 2*table[li][colonne];
+                        *score += table[li][colonne];
                         Set(li, colonne+1, 0);
 
                         //Maintenant on colle toutes les cases vers la gauche
@@ -222,7 +222,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                                     break;
                                 }
                         }
-                        colonne = 0;
+                        //colonne = 0;
                     }
                 }
                 else
@@ -262,7 +262,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                     {
                         quelqueChoseAChange = true;
                         Set(li, colonne, 2*table[li][colonne]);
-                        *score += 2*table[li][colonne];
+                        *score += table[li][colonne];
                         Set(li, colonne-1, 0);
 
                         //Maintenant on colle toutes les cases vers la droite
@@ -277,7 +277,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                                     break;
                                 }
                         }
-                        colonne = taille-1;
+                        //colonne = taille-1;
                     }
                 }
                 else
