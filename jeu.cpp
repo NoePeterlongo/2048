@@ -1,4 +1,5 @@
 #include "jeu.h"
+#include <iostream>
 
 Jeu::Jeu(QObject *parent) : QObject(parent)
 {
@@ -31,4 +32,19 @@ QString Jeu::readCase(int i, int j)
 QString Jeu::readScore()
 {
     return QString::number(score);
+}
+
+void Jeu::NouveauCoup(int deplacement)
+{
+    plateau.Mouvement(deplacement);
+    //maintenant on regarde si on est en gameover
+    bool gameover = true;
+    for(int i = 1; i<5;i++)
+    {
+        Plateau plateauTemp = Plateau(plateau);//On recopie le plateau
+        if(plateauTemp.Mouvement(i))//si ça change quelque chose
+            gameover = false;
+    }
+    if(gameover)
+        std::cout<<"GameOver";
 }

@@ -16,7 +16,7 @@ public:
 
     QString readCase(int i, int j);
     QString readScore();
-
+    void NouveauCoup(int deplacement);
 
 
 private:
