@@ -45,6 +45,8 @@ void Jeu::NouveauCoup(int deplacement)
 {
     plateau.Mouvement(deplacement, &score);
     plateau.AjouterValeurAleatoire();
+    plateau.Print();
+    std::cout<<std::endl;
     plateauChanged();
     scoreChanged();
     //maintenant on regarde si on est en gameover
