@@ -59,7 +59,7 @@ bool Plateau::Set(int ligne, int colonne, int valeur)
 }
 
 
-bool Plateau::Mouvement(int mouvement)
+bool Plateau::Mouvement(int mouvement, int* score)
 {
     bool quelqueChoseAChange = false;
 
@@ -96,6 +96,7 @@ bool Plateau::Mouvement(int mouvement)
                     {
                         quelqueChoseAChange = true;
                         Set(ligne, col, 2*table[ligne][col]);
+                        *score += 2*table[ligne][col];
                         Set(ligne+1, col, 0);
 
                         //Maintenant on colle toutes les cases vers le haut
@@ -151,6 +152,7 @@ bool Plateau::Mouvement(int mouvement)
                     {
                         quelqueChoseAChange = true;
                         Set(ligne, col, 2*table[ligne][col]);
+                        *score += 2*table[ligne][col];
                         Set(ligne-1, col, 0);
 
                         //Maintenant on colle toutes les cases vers le bas
@@ -205,6 +207,7 @@ bool Plateau::Mouvement(int mouvement)
                     {
                         quelqueChoseAChange = true;
                         Set(li, colonne, 2*table[li][colonne]);
+                        *score += 2*table[ligne][col];
                         Set(li, colonne+1, 0);
 
                         //Maintenant on colle toutes les cases vers la gauche
@@ -259,6 +262,7 @@ bool Plateau::Mouvement(int mouvement)
                     {
                         quelqueChoseAChange = true;
                         Set(li, colonne, 2*table[li][colonne]);
+                        *score += 2*table[ligne][col];
                         Set(li, colonne-1, 0);
 
                         //Maintenant on colle toutes les cases vers la droite
