@@ -1,10 +1,10 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-#define HAUT 8
+#define HAUT 1
 #define BAS 2
-#define GAUCHE 4
-#define DROITE 6
+#define GAUCHE 3
+#define DROITE 4
 
 class Plateau
 {

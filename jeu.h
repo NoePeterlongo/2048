@@ -17,6 +17,10 @@ public:
     QString readScore();
     void NouveauCoup(int deplacement);
 
+    Q_INVOKABLE void mvmtHaut();
+    Q_INVOKABLE void mvmtBas();
+    Q_INVOKABLE void mvmtDroite();
+    Q_INVOKABLE void mvmtGauche();
 
 private:
     int score = 11;

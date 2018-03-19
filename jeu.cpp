@@ -57,3 +57,8 @@ void Jeu::NouveauCoup(int deplacement)
     if(gameover)
         std::cout<<"GameOver";
 }
+
+void Jeu::mvmtHaut() {NouveauCoup(HAUT);}
+void Jeu::mvmtBas() {NouveauCoup(BAS);}
+void Jeu::mvmtDroite() {NouveauCoup(DROITE);}
+void Jeu::mvmtGauche() {NouveauCoup(GAUCHE);}
