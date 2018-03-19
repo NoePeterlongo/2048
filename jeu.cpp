@@ -44,6 +44,7 @@ QString Jeu::readScore()
 void Jeu::NouveauCoup(int deplacement)
 {
     plateau.Mouvement(deplacement, &score);
+    plateau.AjouterValeurAleatoire();
     plateauChanged();
     scoreChanged();
     //maintenant on regarde si on est en gameover
