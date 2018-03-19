@@ -40,6 +40,9 @@ void Plateau::Init()//remise à 0, ajout d'une case aléatoire
             table[i][j] = 0;
     }
     AjouterValeurAleatoire();
+    AjouterValeurAleatoire();
+
+    srand(time(NULL));
 }
 
 Plateau::~Plateau()
@@ -292,7 +295,13 @@ bool Plateau::Mouvement(int mouvement, int* score)
 
 void Plateau::AjouterValeurAleatoire()
 {
-    srand(time(NULL));
+    bool ilResteUneCaseLibre = false;
+    for (int i = 0; i<taille; i++)
+        for(int j = 0; j<taille; j++)
+            if(table[i][j]==0) ilResteUneCaseLibre = true;
+    if (!ilResteUneCaseLibre)
+        return;
+
     int nombre = 4;
 
     if(rand()%100 < pourcentageDe2)
