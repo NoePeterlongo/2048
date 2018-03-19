@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QtQml>
 #include <iostream>
 #include "plateau.h"
 #include "jeu.h"
@@ -8,16 +9,16 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-#if defined(Q_OS_WIN)
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#endif
 
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
+    Jeu jeu();
+    //engine.rootContext()->setContextProperty("jeu", &jeu);
+
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
-        return -1;
+
 
     /*
     Plateau p(4);
@@ -45,8 +46,6 @@ int main(int argc, char *argv[])
     cout<<endl;
     cout<<p.getCase(3,3);*/
 
-    //Jeu jeu();
-    //engine.rootContext()->setContextProperty("jeu", &jeu);
 
 
     return app.exec();
