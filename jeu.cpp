@@ -91,3 +91,6 @@ void Jeu::mvmtHaut() {NouveauCoup(HAUT);}
 void Jeu::mvmtBas() {NouveauCoup(BAS);}
 void Jeu::mvmtDroite() {NouveauCoup(DROITE);}
 void Jeu::mvmtGauche() {NouveauCoup(GAUCHE);}
+
+//debug
+
