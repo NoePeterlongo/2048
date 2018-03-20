@@ -39,8 +39,9 @@ void Plateau::Init()//remise à 0, ajout d'une case aléatoire
         for(int j = 0; j < taille; j++)
             table[i][j] = 0;
     }
-    AjouterValeurAleatoire();
-    AjouterValeurAleatoire();
+    int x,y,v;
+    AjouterValeurAleatoire(&x,&y,&v);
+    AjouterValeurAleatoire(&x,&y,&v);
 
     srand(time(NULL));
 }
@@ -297,8 +298,12 @@ bool Plateau::Mouvement(int mouvement, int* score)
     return quelqueChoseAChange;
 }
 
-void Plateau::AjouterValeurAleatoire()
+void Plateau::AjouterValeurAleatoire(int* positionX, int* positionY, int* valeur)
 {
+    *positionX = -1;
+    *positionY = -1;
+    *valeur = -1;
+
     bool ilResteUneCaseLibre = false;
     for (int i = 0; i<taille; i++)
         for(int j = 0; j<taille; j++)
@@ -320,6 +325,10 @@ void Plateau::AjouterValeurAleatoire()
     while(table[ligne][colonne] != 0);
 
     table[ligne][colonne] = nombre;
+
+    *positionX = ligne;
+    *positionY = colonne;
+    *valeur = nombre;
 }
 
 int Plateau::getCase(int ligne, int colonne)

@@ -14,6 +14,8 @@ void Jeu::initialiserPartie()
     plateauChanged();
     colorChanged();
 
+    idCoup = 0;
+    plateauInitial = new Plateau(plateau);
 }
 
 
@@ -69,7 +71,11 @@ QString Jeu::readScore()
 void Jeu::NouveauCoup(int deplacement)
 {
     plateau.Mouvement(deplacement, &score);
-    plateau.AjouterValeurAleatoire();
+    plateau.AjouterValeurAleatoire(&posX, &posY, &val);
+    idCoup++;
+    //coups[idCoup] = new Coup;
+    //Coup* pCoup = new Coup(deplacement, posX, posY, val);
+
     plateau.Print();
     std::cout<<std::endl;
     plateauChanged();
@@ -91,3 +97,8 @@ void Jeu::mvmtHaut() {NouveauCoup(HAUT);}
 void Jeu::mvmtBas() {NouveauCoup(BAS);}
 void Jeu::mvmtDroite() {NouveauCoup(DROITE);}
 void Jeu::mvmtGauche() {NouveauCoup(GAUCHE);}
+
+void Jeu::annulerCoup()
+{
+    //if (idCoup >= 0)
+}

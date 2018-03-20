@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <plateau.h>
+#include <coup.h>
+#include <vector>
 
 class Jeu : public QObject
 {
@@ -24,12 +26,18 @@ public:
     Q_INVOKABLE void mvmtDroite();
     Q_INVOKABLE void mvmtGauche();
 
+    Q_INVOKABLE void annulerCoup();
+
 private:
     int score = 0;
     int scoreDebug = 0;
     Plateau plateau;
     QList<QString> Lcolor={"#F4CA99", "#FCFBFA","#E2BB8E", "#ED9530", "#DE5116"};
 
+    Coup* coups[1000];
+    Plateau* plateauInitial;
+    int idCoup = -1;
+    int posX, posY, val;
 
 signals:
 
