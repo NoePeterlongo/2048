@@ -9,7 +9,7 @@ class Jeu : public QObject
     Q_OBJECT
 public:
     explicit Jeu(QObject *parent = nullptr);
-    Q_INVOKABLE void InitialiserPartie();
+    Q_INVOKABLE void initialiserPartie();
     Q_PROPERTY(QList<QString> plateauQML READ readPlateau NOTIFY plateauChanged);
     Q_PROPERTY(QList<QString> colorQML READ readColor NOTIFY colorChanged);
     Q_PROPERTY(QString scoreQML READ readScore NOTIFY scoreChanged);

@@ -3,10 +3,10 @@
 
 Jeu::Jeu(QObject *parent) : QObject(parent)
 {
-    InitialiserPartie();
+    initialiserPartie();
 }
 
-void Jeu::InitialiserPartie()
+void Jeu::initialiserPartie()
 {
     plateau.Init();
     score = 0;
