@@ -12,6 +12,7 @@ void Jeu::InitialiserPartie()
     score = 0;
     scoreChanged();
     plateauChanged();
+    colorChanged();
 
 }
 
@@ -36,6 +37,30 @@ QList<QString> Jeu::readPlateau()
     return L;
 }
 
+QList<QString> Jeu::readColor()
+{
+    QList<QString> L;
+    for (int i=0; i<plateau.getTaille(); i++)
+    {
+        for (int j=0; j<plateau.getTaille(); j++)
+        {
+            int tuile=plateau.getCase(i,j);
+            if (tuile==0)
+            {
+                L.append(Lcolor[0]);
+            }
+            else if (log2(tuile)<5)
+            {
+                L.append(Lcolor[log2(tuile)]);
+            }
+            else{
+                L.append(Lcolor[0]);
+            }
+        }
+    }
+    return L;
+}
+
 QString Jeu::readScore()
 {
     return QString::number(score);
@@ -48,6 +73,7 @@ void Jeu::NouveauCoup(int deplacement)
     plateau.Print();
     std::cout<<std::endl;
     plateauChanged();
+    colorChanged();
     scoreChanged();
     //maintenant on regarde si on est en gameover
     bool gameover = true;

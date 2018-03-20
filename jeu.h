@@ -11,9 +11,11 @@ public:
     explicit Jeu(QObject *parent = nullptr);
     Q_INVOKABLE void InitialiserPartie();
     Q_PROPERTY(QList<QString> plateauQML READ readPlateau NOTIFY plateauChanged);
+    Q_PROPERTY(QList<QString> colorQML READ readColor NOTIFY colorChanged);
     Q_PROPERTY(QString scoreQML READ readScore NOTIFY scoreChanged);
 
     QList<QString> readPlateau();
+    QList<QString> readColor();
     QString readScore();
     void NouveauCoup(int deplacement);
 
@@ -26,12 +28,14 @@ private:
     int score = 0;
     int scoreDebug = 0;
     Plateau plateau;
+    QList<QString> Lcolor={"#F4CA99", "#FCFBFA","#E2BB8E", "#ED9530", "#DE5116"};
 
 
 signals:
 
     void plateauChanged();
     void scoreChanged();
+    void colorChanged();
 
 public slots:
 };

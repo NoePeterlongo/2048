@@ -6,6 +6,7 @@ Item {
     height: 100
 
     property string valeur: qsTr("Text")
+    property string couleur: qsTr("#F4CA99")
 
     Rectangle {
         id: rectangle
@@ -13,7 +14,8 @@ Item {
         y: 8
         width: 100
         height: 100
-        color: "red"
+        color: couleur
+        radius: 10
         //color: vueObjetTui.tuileCol
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
@@ -36,7 +38,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 25
-        //text: vueObjetTui.tuileTxt
+
     }
 
 }

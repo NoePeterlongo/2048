@@ -15,7 +15,8 @@ Window {
         id: rectangle
         width: 430
         height: 430
-        color: "yellow"
+        color: "#E6B278"
+        radius: 10
         anchors.verticalCenterOffset: 100
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
@@ -55,81 +56,97 @@ Window {
             Tuile {
                 id: tuile1
                 valeur: jeu.plateauQML[0]
+                couleur: jeu.colorQML[0]
             }
 
             Tuile {
                 id: tuile
                 valeur: jeu.plateauQML[1]
+                couleur: jeu.colorQML[1]
             }
 
             Tuile {
                 id: tuile2
                 valeur: jeu.plateauQML[2]
+                couleur: jeu.colorQML[2]
             }
 
             Tuile {
                 id: tuile3
                 valeur: jeu.plateauQML[3]
+                couleur: jeu.colorQML[3]
             }
 
             Tuile {
                 id: tuile4
                 valeur: jeu.plateauQML[4]
+                couleur: jeu.colorQML[4]
             }
 
             Tuile {
                 id: tuile5
                 valeur: jeu.plateauQML[5]
+                couleur: jeu.colorQML[5]
             }
 
             Tuile {
                 id: tuile6
                 valeur: jeu.plateauQML[6]
+                couleur: jeu.colorQML[6]
             }
 
             Tuile {
                 id: tuile7
                 valeur: jeu.plateauQML[7]
+                couleur: jeu.colorQML[7]
             }
 
             Tuile {
                 id: tuile8
                 valeur: jeu.plateauQML[8]
+                couleur: jeu.colorQML[8]
             }
 
             Tuile {
                 id: tuile9
                 valeur: jeu.plateauQML[9]
+                couleur: jeu.colorQML[9]
             }
 
             Tuile {
                 id: tuile10
                 valeur: jeu.plateauQML[10]
+                couleur: jeu.colorQML[10]
             }
 
             Tuile {
                 id: tuile11
                 valeur: jeu.plateauQML[11]
+                couleur: jeu.colorQML[11]
             }
 
             Tuile {
                 id: tuile12
                 valeur: jeu.plateauQML[12]
+                couleur: jeu.colorQML[12]
             }
 
             Tuile {
                 id: tuile13
                 valeur: jeu.plateauQML[13]
+                couleur: jeu.colorQML[13]
             }
 
             Tuile {
                 id: tuile14
                 valeur: jeu.plateauQML[14]
+                couleur: jeu.colorQML[14]
             }
 
             Tuile {
                 id: tuile15
                 valeur: jeu.plateauQML[15]
+                couleur: jeu.colorQML[15]
             }
         }
     }
