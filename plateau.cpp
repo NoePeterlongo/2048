@@ -350,3 +350,17 @@ void Plateau::Print()
         cout<<endl;
     }
 }
+
+void Plateau::operator=(const Plateau& autrePlateau)
+{
+    taille = autrePlateau.taille;
+
+    //allocation dynamique de la table et initialisation
+    table = new int*[taille];
+    for(int i = 0; i<taille; i++)
+    {
+        table[i] = new int[taille];
+        for(int j = 0; j < taille; j++)
+            table[i][j] = autrePlateau.table[i][j];
+    }
+}

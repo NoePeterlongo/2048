@@ -16,11 +16,11 @@ Coup::Coup()
     valeurNouvelleTuille = 0;
 }
 
-Coup& Coup::operator =(const Coup& cp)
+/*Coup& Coup::operator =(const Coup& cp)
 {
     mouvement = cp.mouvement;
     positionNouvelleTuilleX = cp.positionNouvelleTuilleX;
     positionNouvelleTuilleY = cp.positionNouvelleTuilleY;
     valeurNouvelleTuille = cp.valeurNouvelleTuille;
     return *this;
-}
+}*/

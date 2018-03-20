@@ -255,5 +255,6 @@ Window {
         height: 50
         text: qsTr("Annuler coup")
         font.pointSize: 10
+        onClicked: jeu.annulerCoup();
     }
 }

@@ -30,6 +30,7 @@ public:
     void AjouterValeurAleatoire(int* positionX, int* positionY, int* valeur);
     void Print();
 
+    void operator=(const Plateau& autrePlateau);
 };
 
 #endif // PLATEAU_H

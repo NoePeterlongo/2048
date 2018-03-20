@@ -12,7 +12,7 @@ public:
     int positionNouvelleTuilleY;
     int valeurNouvelleTuille;
 
-    Coup& operator=(Coup& cp);
+    //Coup& operator=(Coup& cp);
 };
 
 #endif // COUP_H
