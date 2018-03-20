@@ -14,7 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     plateau.cpp \
-    jeu.cpp
+    jeu.cpp \
+    coup.cpp
 
 RESOURCES += qml.qrc
 
@@ -31,4 +32,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     plateau.h \
-    jeu.h
+    jeu.h \
+    coup.h
