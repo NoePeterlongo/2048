@@ -81,6 +81,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                     for(int j = i+1; j<taille; j++)
                         if(table[j][col] != 0)
                         {
+                            quelqueChoseAChange = true;
                             Set(i,col, table[j][col]);
                             Set(j,col, 0);
                             break;
@@ -137,6 +138,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                     for(int j = i-1; j>=0; j--)
                         if(table[j][col] != 0)
                         {
+                            quelqueChoseAChange = true;
                             Set(i,col, table[j][col]);
                             Set(j,col, 0);
                             break;
@@ -192,6 +194,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                     for(int j = i+1; j<taille; j++)
                         if(table[li][j] != 0)
                         {
+                            quelqueChoseAChange = true;
                             Set(li,i, table[li][j]);
                             Set(li,j, 0);
                             break;
@@ -247,6 +250,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                     for(int j = i-1; j>=0; j--)
                         if(table[li][j] != 0)
                         {
+                            quelqueChoseAChange = true;
                             Set(li,i, table[li][j]);
                             Set(li,j, 0);
                             break;
