@@ -14,7 +14,7 @@ void Jeu::initialiserPartie()
     plateauChanged();
     colorChanged();
 
-    idCoup = 0;
+    idCoup = -1;
     plateauInitial = new Plateau(plateau);
 }
 
@@ -73,6 +73,7 @@ void Jeu::NouveauCoup(int deplacement)
     plateau.Mouvement(deplacement, &score);
     plateau.AjouterValeurAleatoire(&posX, &posY, &val);
     idCoup++;
+    //std::cout<<idCoup<<std::endl;
     coups[idCoup] = new Coup(deplacement, posX, posY, val);
 
     plateau.Print();
@@ -107,7 +108,7 @@ void Jeu::annulerCoup()
         score=0;
         for(int i=0; i<idCoup+1 && i<1000; i++)
         {
-            std::cout<<i<<std::endl;
+            //std::cout<<i<<" "<<coups[i]->mouvement<<std::endl;
             plateau.Mouvement(coups[i]->mouvement, &score);
             plateau.Set(coups[i]->positionNouvelleTuilleX, coups[i]->positionNouvelleTuilleY, coups[i]->valeurNouvelleTuille);
         }
