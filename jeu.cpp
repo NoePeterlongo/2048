@@ -89,8 +89,8 @@ QString Jeu::readMeilleurScore()
 
 void Jeu::NouveauCoup(int deplacement)
 {
-    plateau.Mouvement(deplacement, &score);
-    plateau.AjouterValeurAleatoire(&posX, &posY, &val);
+    if(plateau.Mouvement(deplacement, &score))
+        plateau.AjouterValeurAleatoire(&posX, &posY, &val);
     idCoup++;
     idCoupMax = idCoup;
 
@@ -138,7 +138,7 @@ void Jeu::annulerCoup(bool reculer)
             plateau.Init();
             plateau = *plateauInitial;
             score=0;
-            for(int i=0; i<idCoup+1 && i<1000; i++)
+            for(int i=0; i<idCoup+1 && i<100000; i++)
             {
                 plateau.Mouvement(coups[i]->mouvement, &score);
                 plateau.Set(coups[i]->positionNouvelleTuilleX, coups[i]->positionNouvelleTuilleY, coups[i]->valeurNouvelleTuille);
@@ -156,7 +156,7 @@ void Jeu::annulerCoup(bool reculer)
             plateau.Init();
             plateau = *plateauInitial;
             score=0;
-            for(int i=0; i<idCoup+1 && i<1000; i++)
+            for(int i=0; i<idCoup+1 && i<100000; i++)
             {
                 plateau.Mouvement(coups[i]->mouvement, &score);
                 plateau.Set(coups[i]->positionNouvelleTuilleX, coups[i]->positionNouvelleTuilleY, coups[i]->valeurNouvelleTuille);
