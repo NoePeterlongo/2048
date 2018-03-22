@@ -150,6 +150,31 @@ Window {
                 couleur: jeu.colorQML[15]
             }
         }
+
+        Rectangle {
+            id: gameOver
+            color: "#80fd2727"
+            radius: 20
+            anchors.fill: parent
+            visible: jeu.gameOverVisibleQML;
+
+            Text {
+                id: gameOverText
+                color: "#c6c6c6"
+                text: qsTr("Game Over")
+                font.capitalization: Font.AllUppercase
+                font.bold: true
+                rightPadding: 30
+                leftPadding: 30
+                topPadding: 0
+                fontSizeMode: Text.FixedSize
+                wrapMode: Text.NoWrap
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                anchors.fill: parent
+                font.pixelSize: 50
+            }
+        }
     }
 
     Text {

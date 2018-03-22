@@ -17,6 +17,8 @@ Jeu::Jeu(QObject *parent) : QObject(parent)
     fscanf_s(fichierSauvegarde, "Meilleur score : %d", &meilleurScore);
     fclose(fichierSauvegarde);
     meilleurScoreChanged();
+
+
 }
 
 void Jeu::initialiserPartie()
@@ -30,6 +32,9 @@ void Jeu::initialiserPartie()
     idCoup = -1;
     idCoupMax = -1;
     plateauInitial = new Plateau(plateau);
+
+    gameOverVisible = false;
+    gameOverVisibleChanged();
 }
 
 
@@ -87,6 +92,11 @@ QString Jeu::readMeilleurScore()
     return QString::number(meilleurScore);
 }
 
+bool Jeu::readGameOverVisible()
+{
+    return gameOverVisible;
+}
+
 void Jeu::NouveauCoup(int deplacement)
 {
     if(plateau.Mouvement(deplacement, &score))
@@ -120,7 +130,12 @@ void Jeu::NouveauCoup(int deplacement)
             gameover = false;
     }
     if(gameover)
+    {
         std::cout<<"GameOver";
+        gameOverVisible = true;
+        gameOverVisibleChanged();
+    }
+
 }
 
 void Jeu::mvmtHaut() {NouveauCoup(HAUT);}
@@ -132,7 +147,7 @@ void Jeu::annulerCoup(bool reculer)
 {
     if (reculer)
     {
-        if (idCoup >= 0)
+        if (idCoup >= 0 && !gameOverVisible)
         {
             idCoup--;
             plateau.Init();
@@ -150,7 +165,7 @@ void Jeu::annulerCoup(bool reculer)
     }
     else
     {
-        if (idCoup<idCoupMax)
+        if (idCoup<idCoupMax && !gameOverVisible)
         {
             idCoup++;
             plateau.Init();
@@ -166,4 +181,24 @@ void Jeu::annulerCoup(bool reculer)
             scoreChanged();
         }
     }
+    /*
+    //maintenant on regarde si on est en gameover
+    bool gameover = true;
+    for(int i = 1; i<5;i++)
+    {
+        Plateau plateauTemp = Plateau(plateau);//On recopie le plateau
+        if(plateauTemp.Mouvement(i, &scoreDebug))//si ça change quelque chose
+            gameover = false;
+    }
+    if(gameover)
+    {
+        std::cout<<"GameOver";
+        gameOverVisible = true;
+        gameOverVisibleChanged();
+    }
+    else
+    {
+        gameOverVisible = false;
+        gameOverVisibleChanged();
+    }*/
 }

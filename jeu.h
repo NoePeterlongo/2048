@@ -16,11 +16,14 @@ public:
     Q_PROPERTY(QList<QString> colorQML READ readColor NOTIFY colorChanged);
     Q_PROPERTY(QString scoreQML READ readScore NOTIFY scoreChanged);
     Q_PROPERTY(QString meilleurScoreQML READ readMeilleurScore NOTIFY meilleurScoreChanged);
+    Q_PROPERTY(bool gameOverVisibleQML READ readGameOverVisible NOTIFY gameOverVisibleChanged);
 
     QList<QString> readPlateau();
     QList<QString> readColor();
     QString readScore();
     QString readMeilleurScore();
+    bool readGameOverVisible();
+
     void NouveauCoup(int deplacement);
 
     Q_INVOKABLE void mvmtHaut();
@@ -45,12 +48,15 @@ private:
     int meilleurScore = 0;
     const char * chemin = "sauvegarde.zgh";
 
+    bool gameOverVisible = false;
+
 signals:
 
     void plateauChanged();
     void scoreChanged();
     void meilleurScoreChanged();
     void colorChanged();
+    void gameOverVisibleChanged();
 
 public slots:
 };
