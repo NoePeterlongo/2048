@@ -32,7 +32,7 @@ private:
     int score = 0;
     int scoreDebug = 0;
     Plateau plateau;
-    QList<QString> Lcolor={"#F4CA99", "#FCFBFA","#E2BB8E", "#ED9530", "#DE5116", "#B10406", "#BE0933", "#AC28FE", "#4F24FD"};
+    QList<QString> Lcolor={"#F4CA99", "#FCFBFA","#E2BB8E", "#ED9530", "#DE5116", "#B10406", "#BE0933", "#AC28FE", "#4F24FD", "#138CBC", "#43D4C6", "#7ABE90"};
 
     Coup* coups[1000];
     Plateau* plateauInitial;

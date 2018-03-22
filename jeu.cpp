@@ -52,7 +52,7 @@ QList<QString> Jeu::readColor()
             {
                 L.append(Lcolor[0]);
             }
-            else if (log2(tuile)<9)
+            else if (log2(tuile)<12)
             {
                 L.append(Lcolor[log2(tuile)]);
             }
