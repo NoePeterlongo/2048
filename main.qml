@@ -11,6 +11,7 @@ Window {
     property alias grid: grid
     title: qsTr("2048")
 
+
     Rectangle {
         id: rectangle
         width: 430
@@ -244,7 +245,10 @@ Window {
         height: 50
         text: qsTr("Nouvelle partie")
         font.pointSize: 10
-        onClicked: jeu.initialiserPartie();
+        onClicked: {
+            grid.focus = true;
+            jeu.initialiserPartie();
+        }
     }
 
     Button {
@@ -255,6 +259,9 @@ Window {
         height: 50
         text: qsTr("Annuler coup")
         font.pointSize: 10
-        onClicked: jeu.annulerCoup();
+        onClicked: {
+            grid.focus = true;
+            jeu.annulerCoup();
+        }
     }
 }
