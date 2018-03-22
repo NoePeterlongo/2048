@@ -1,9 +1,22 @@
 #include "jeu.h"
 #include <iostream>
+#include <string>
+
 
 Jeu::Jeu(QObject *parent) : QObject(parent)
 {
     initialiserPartie();
+
+    if(fopen(chemin, "r")==NULL)//Si le fichier n'existe pas
+    {
+        fopen_s(&fichierSauvegarde, chemin, "w");
+        fprintf_s(fichierSauvegarde, "Meilleur score : 0");
+        fclose(fichierSauvegarde);
+    }
+    fopen_s(&fichierSauvegarde, chemin, "r");
+    fscanf_s(fichierSauvegarde, "Meilleur score : %d", &meilleurScore);
+    fclose(fichierSauvegarde);
+    meilleurScoreChanged();
 }
 
 void Jeu::initialiserPartie()
@@ -69,17 +82,32 @@ QString Jeu::readScore()
     return QString::number(score);
 }
 
+QString Jeu::readMeilleurScore()
+{
+    return QString::number(meilleurScore);
+}
+
 void Jeu::NouveauCoup(int deplacement)
 {
     plateau.Mouvement(deplacement, &score);
     plateau.AjouterValeurAleatoire(&posX, &posY, &val);
     idCoup++;
     idCoupMax = idCoup;
-    //std::cout<<idCoup<<std::endl;
+
     coups[idCoup] = new Coup(deplacement, posX, posY, val);
 
     plateau.Print();
     std::cout<<std::endl;
+
+    if(score>meilleurScore)
+    {
+        meilleurScore = score;
+        fichierSauvegarde = fopen(chemin, "w");
+        fprintf_s(fichierSauvegarde, "Meilleur score : %d", meilleurScore);
+        fclose(fichierSauvegarde);
+        meilleurScoreChanged();
+    }
+
     plateauChanged();
     colorChanged();
     scoreChanged();

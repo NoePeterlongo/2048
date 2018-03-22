@@ -15,10 +15,12 @@ public:
     Q_PROPERTY(QList<QString> plateauQML READ readPlateau NOTIFY plateauChanged);
     Q_PROPERTY(QList<QString> colorQML READ readColor NOTIFY colorChanged);
     Q_PROPERTY(QString scoreQML READ readScore NOTIFY scoreChanged);
+    Q_PROPERTY(QString meilleurScoreQML READ readMeilleurScore NOTIFY meilleurScoreChanged);
 
     QList<QString> readPlateau();
     QList<QString> readColor();
     QString readScore();
+    QString readMeilleurScore();
     void NouveauCoup(int deplacement);
 
     Q_INVOKABLE void mvmtHaut();
@@ -39,10 +41,15 @@ private:
     int idCoup = -1, idCoupMax = -1;
     int posX, posY, val;
 
+    FILE* fichierSauvegarde;
+    int meilleurScore = 0;
+    const char * chemin = "sauvegarde.zgh";
+
 signals:
 
     void plateauChanged();
     void scoreChanged();
+    void meilleurScoreChanged();
     void colorChanged();
 
 public slots:

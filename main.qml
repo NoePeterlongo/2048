@@ -230,7 +230,7 @@ Window {
             y: 22
             width: 105
             height: 35
-            text: qsTr("0")
+            text: jeu.meilleurScoreQML
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 21
             verticalAlignment: Text.AlignVCenter
