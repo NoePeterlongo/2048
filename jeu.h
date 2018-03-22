@@ -26,7 +26,7 @@ public:
     Q_INVOKABLE void mvmtDroite();
     Q_INVOKABLE void mvmtGauche();
 
-    Q_INVOKABLE void annulerCoup();
+    Q_INVOKABLE void annulerCoup(bool reculer = true);
 
 private:
     int score = 0;
@@ -36,7 +36,7 @@ private:
 
     Coup* coups[1000];
     Plateau* plateauInitial;
-    int idCoup = -1;
+    int idCoup = -1, idCoupMax = -1;
     int posX, posY, val;
 
 signals:

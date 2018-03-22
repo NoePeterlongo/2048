@@ -239,7 +239,7 @@ Window {
 
     Button {
         id: buttonNouvellePartie
-        x: 297
+        x: 211
         y: 130
         width: 105
         height: 50
@@ -253,7 +253,7 @@ Window {
 
     Button {
         id: buttonAnnuler
-        x: 410
+        x: 327
         y: 130
         width: 105
         height: 50
@@ -262,6 +262,23 @@ Window {
         onClicked: {
             grid.focus = true;
             jeu.annulerCoup();
+        }
+    }
+
+    Button {
+        id: buttonCoupSuivant
+        x: 447
+        y: 130
+        width: 105
+        height: 50
+        text: qsTr("Coup suivant")
+        leftPadding: 8
+        bottomPadding: 6
+        focusPolicy: Qt.ClickFocus
+        font.pointSize: 10
+        onClicked: {
+            grid.focus = true;
+            jeu.annulerCoup(false);
         }
     }
 }

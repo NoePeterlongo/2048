@@ -15,6 +15,7 @@ void Jeu::initialiserPartie()
     colorChanged();
 
     idCoup = -1;
+    idCoupMax = -1;
     plateauInitial = new Plateau(plateau);
 }
 
@@ -73,6 +74,7 @@ void Jeu::NouveauCoup(int deplacement)
     plateau.Mouvement(deplacement, &score);
     plateau.AjouterValeurAleatoire(&posX, &posY, &val);
     idCoup++;
+    idCoupMax = idCoup;
     //std::cout<<idCoup<<std::endl;
     coups[idCoup] = new Coup(deplacement, posX, posY, val);
 
@@ -98,22 +100,42 @@ void Jeu::mvmtBas() {NouveauCoup(BAS);}
 void Jeu::mvmtDroite() {NouveauCoup(DROITE);}
 void Jeu::mvmtGauche() {NouveauCoup(GAUCHE);}
 
-void Jeu::annulerCoup()
+void Jeu::annulerCoup(bool reculer)
 {
-    if (idCoup >= 0)
+    if (reculer)
     {
-        idCoup--;
-        plateau.Init();
-        plateau = *plateauInitial;
-        score=0;
-        for(int i=0; i<idCoup+1 && i<1000; i++)
+        if (idCoup >= 0)
         {
-            //std::cout<<i<<" "<<coups[i]->mouvement<<std::endl;
-            plateau.Mouvement(coups[i]->mouvement, &score);
-            plateau.Set(coups[i]->positionNouvelleTuilleX, coups[i]->positionNouvelleTuilleY, coups[i]->valeurNouvelleTuille);
+            idCoup--;
+            plateau.Init();
+            plateau = *plateauInitial;
+            score=0;
+            for(int i=0; i<idCoup+1 && i<1000; i++)
+            {
+                plateau.Mouvement(coups[i]->mouvement, &score);
+                plateau.Set(coups[i]->positionNouvelleTuilleX, coups[i]->positionNouvelleTuilleY, coups[i]->valeurNouvelleTuille);
+            }
+            plateauChanged();
+            colorChanged();
+            scoreChanged();
         }
-        plateauChanged();
-        colorChanged();
-        scoreChanged();
+    }
+    else
+    {
+        if (idCoup<idCoupMax)
+        {
+            idCoup++;
+            plateau.Init();
+            plateau = *plateauInitial;
+            score=0;
+            for(int i=0; i<idCoup+1 && i<1000; i++)
+            {
+                plateau.Mouvement(coups[i]->mouvement, &score);
+                plateau.Set(coups[i]->positionNouvelleTuilleX, coups[i]->positionNouvelleTuilleY, coups[i]->valeurNouvelleTuille);
+            }
+            plateauChanged();
+            colorChanged();
+            scoreChanged();
+        }
     }
 }
