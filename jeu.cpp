@@ -14,7 +14,7 @@ Jeu::Jeu(QObject *parent) : QObject(parent)
         fclose(fichierSauvegarde);
     }
     fopen_s(&fichierSauvegarde, chemin, "r");
-    fscanf_s(fichierSauvegarde, "Meilleur score : %d", &meilleurScore);
+    fscanf(fichierSauvegarde, "Meilleur score : %d", &meilleurScore);
     fclose(fichierSauvegarde);
     meilleurScoreChanged();
 
@@ -70,7 +70,7 @@ QList<QString> Jeu::readColor()
             {
                 L.append(Lcolor[0]);
             }
-            else if (log2(tuile)<12)
+            else if (log2(tuile)<16)
             {
                 L.append(Lcolor[log2(tuile)]);
             }
