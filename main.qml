@@ -202,7 +202,10 @@ Window {
         y: 43
         width: 105
         height: 57
-        color: "#ffffff"
+        color: "#f4ca99"
+        radius: 5
+        anchors.horizontalCenterOffset: 39
+        anchors.horizontalCenter: parent.horizontalCenter
 
         Text {
             id: text2
@@ -236,7 +239,10 @@ Window {
         y: 43
         width: 105
         height: 57
-        color: "#ffffff"
+        color: "#f4ca99"
+        radius: 5
+        anchors.horizontalCenterOffset: 185
+        anchors.horizontalCenter: parent.horizontalCenter
         Text {
             id: text4
             width: 105
@@ -269,6 +275,8 @@ Window {
         width: 105
         height: 50
         text: qsTr("Nouvelle partie")
+        anchors.horizontalCenterOffset: -36
+        anchors.horizontalCenter: parent.horizontalCenter
         font.pointSize: 10
         onClicked: {
             grid.focus = true;
@@ -283,6 +291,8 @@ Window {
         width: 105
         height: 50
         text: qsTr("Annuler coup")
+        anchors.horizontalCenterOffset: 80
+        anchors.horizontalCenter: parent.horizontalCenter
         font.pointSize: 10
         onClicked: {
             grid.focus = true;
@@ -297,6 +307,8 @@ Window {
         width: 105
         height: 50
         text: qsTr("Coup suivant")
+        anchors.horizontalCenterOffset: 199
+        anchors.horizontalCenter: parent.horizontalCenter
         leftPadding: 8
         bottomPadding: 6
         focusPolicy: Qt.ClickFocus
