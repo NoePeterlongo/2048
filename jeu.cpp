@@ -7,6 +7,8 @@ Jeu::Jeu(QObject *parent) : QObject(parent)
 {
     initialiserPartie();
 
+    //Traitement du fichier de meilleur score :
+
     if(fopen(chemin, "r")==NULL)//Si le fichier n'existe pas
     {
         fopen_s(&fichierSauvegarde, chemin, "w");
@@ -14,21 +16,24 @@ Jeu::Jeu(QObject *parent) : QObject(parent)
         fclose(fichierSauvegarde);
     }
     fopen_s(&fichierSauvegarde, chemin, "r");
+    //On récupère le meilleur score
     fscanf(fichierSauvegarde, "Meilleur score : %d", &meilleurScore);
     fclose(fichierSauvegarde);
-    meilleurScoreChanged();
+    meilleurScoreChanged();//On met à jour l'affichage du meilleur score
 
 
 }
 
 void Jeu::initialiserPartie()
 {
-    plateau.Init();
+    plateau.Init();//réinitialisation du plateau
     score = 0;
+    //Mise à jour de l'affichage
     scoreChanged();
     plateauChanged();
     colorChanged();
 
+    //initialisation de la position dans le tableau d'enregistrement des coups
     idCoup = -1;
     idCoupMax = -1;
     plateauInitial = new Plateau(plateau);
@@ -99,17 +104,22 @@ bool Jeu::readGameOverVisible()
 
 void Jeu::NouveauCoup(int deplacement)
 {
+    //On applique le mouvement, et s'il a changé quelque chose au plateau,
+    //On ajoute une case aléatoire
     if(plateau.Mouvement(deplacement, &score))
         plateau.AjouterValeurAleatoire(&posX, &posY, &val);
+
+    //Mise à jour de la position dans le tableau d'enregistrement des coups
     idCoup++;
     idCoupMax = idCoup;
-
+    //Création du coup correspondant au coup actuel
     coups[idCoup] = new Coup(deplacement, posX, posY, val);
 
+    //Affichage pour débuggage
     plateau.Print();
     std::cout<<std::endl;
 
-    if(score>meilleurScore)
+    if(score>meilleurScore)//Mise à jour du meilleur score si besoin
     {
         meilleurScore = score;
         fichierSauvegarde = fopen(chemin, "w");
@@ -121,7 +131,9 @@ void Jeu::NouveauCoup(int deplacement)
     plateauChanged();
     colorChanged();
     scoreChanged();
-    //maintenant on regarde si on est en gameover
+    //maintenant on regarde si on est en gameover:
+    //On applique à des copies du plateau les quatre coups possibles,
+    //Si aucun des coups ne modifie le plateau, alors on est en GameOver
     bool gameover = true;
     for(int i = 1; i<5;i++)
     {
@@ -138,16 +150,23 @@ void Jeu::NouveauCoup(int deplacement)
 
 }
 
+//Ces fonctions sont appelées par le QML, et elles-mêmes appellent NouveauCoup avec le paramètre approprié
 void Jeu::mvmtHaut() {NouveauCoup(HAUT);}
 void Jeu::mvmtBas() {NouveauCoup(BAS);}
 void Jeu::mvmtDroite() {NouveauCoup(DROITE);}
 void Jeu::mvmtGauche() {NouveauCoup(GAUCHE);}
 
+//Permet de revenir, ou d'avancer d'un coup (suivant la valeur de "reculer")
+/*Le tableau "coups" contient l'ensemble des coups qui ont été joués,
+ * "idCoup" contient la position dans ce tableau correspondant au plateau affiché
+ * "idCoupMax" contient la position dans "coups" du dernier coup joué
+ *
+ * L'idée est de rejouer tous les coups depuis le début */
 void Jeu::annulerCoup(bool reculer)
 {
     if (reculer)
     {
-        if (idCoup >= 0 && !gameOverVisible)
+        if (idCoup >= 0 && !gameOverVisible)//Pas de retour possible si le gameover est atteint
         {
             idCoup--;
             plateau.Init();

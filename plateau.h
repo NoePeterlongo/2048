@@ -9,8 +9,8 @@
 class Plateau
 {
 private:
-    int taille;
-    int **table;
+    int taille;//Cette classe est conçue pour fonctionner avec plusieurs tailles
+    int **table;//Tableau représentant le plateau actuel
     int pourcentageDe2 = 90;
 public:
     Plateau();//constructeur classique

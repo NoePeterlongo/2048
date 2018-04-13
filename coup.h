@@ -1,6 +1,8 @@
 #ifndef COUP_H
 #define COUP_H
 
+//Classe utilisée pour simplifier le code de l'enregistrement des coups
+//Contient le mouvement réalisé ainsi que les informations sur la case ajoutée
 
 class Coup
 {

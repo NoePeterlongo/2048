@@ -6,9 +6,9 @@ using namespace std;
 
 Plateau::Plateau()
 {
-    taille = 4;
+    taille = 4;//Pour l'instant la taille est fixée
 
-    //allocation dynamique de la table et initialisation
+    //allocation dynamique de la table et initialisation à 0 de toutes les cases
     table = new int*[taille];
     for(int i = 0; i<taille; i++)
     {
@@ -32,7 +32,7 @@ Plateau::Plateau(const Plateau &autrePlateau)
     }
 }
 
-void Plateau::Init()//remise à 0, ajout d'une case aléatoire
+void Plateau::Init()//remise à 0, ajout de deux cases aléatoires
 {
     for(int i = 0; i<taille; i++)
     {
@@ -43,7 +43,7 @@ void Plateau::Init()//remise à 0, ajout d'une case aléatoire
     AjouterValeurAleatoire(&x,&y,&v);
     AjouterValeurAleatoire(&x,&y,&v);
 
-    srand(time(NULL));
+    srand(time(NULL));//initalisation du générateur aléatoire
 }
 
 Plateau::~Plateau()
@@ -53,6 +53,7 @@ Plateau::~Plateau()
     delete[] table;
 }
 
+//Change une valeur dans table, en faisant des vérifications
 bool Plateau::Set(int ligne, int colonne, int valeur)
 {
     if(ligne>=taille || ligne<0 || colonne<0 || colonne>=taille)
@@ -62,25 +63,24 @@ bool Plateau::Set(int ligne, int colonne, int valeur)
     return true;
 }
 
-
+//Applique un mouvement au plateau, et met à jour le score
 bool Plateau::Mouvement(int mouvement, int* score)
 {
-    bool quelqueChoseAChange = false;
+    bool quelqueChoseAChange = false;//variable utilisée pour détecter le gameover
 
     switch(mouvement)
     {
     case HAUT:
-        for(int col = 0; col<taille; col++)
+        for(int col = 0; col<taille; col++)//On traite les colonnes une à une
         {
-            bool continuer = true;
 
-            //On commence par coller toutes les cases de la colonne vers le haut
+            //On commence par coller toutes les cases de la colonne vers le haut :
             for(int i = 0; i<taille-1; i++)
             {
                 //Pour chaque case nulle, on va chercher la premiere case non nulle qui la suit
                 if(table[i][col]==0)
                     for(int j = i+1; j<taille; j++)
-                        if(table[j][col] != 0)
+                        if(table[j][col] != 0)//La case non nulle qui suit : on déplace sa valeur, elle devient alors nulle, et on continue en charchant la prochaine case non nulle
                         {
                             quelqueChoseAChange = true;
                             Set(i,col, table[j][col]);
@@ -89,22 +89,28 @@ bool Plateau::Mouvement(int mouvement, int* score)
                         }
             }
 
-            //maintenant on traite le tableau
+            //maintenant on traite le tableau, et les fusions
             int ligne = 0;
+            bool continuer = true;
             while(continuer)
             {
+                /* on traite les cases une à une :
+                 * si la case sur laquelle on est est suivie par une case identique,
+                 * on les fusionne */
                 if(ligne<taille-1 && table[ligne][col] != 0)
                 {
                     if(table[ligne][col] != table[ligne+1][col])
-                        ligne++;
+                        ligne++;//On change de case
                     else
                     {
+                        //fusion
                         quelqueChoseAChange = true;
                         Set(ligne, col, 2*table[ligne][col]);
                         *score += table[ligne][col];
                         Set(ligne+1, col, 0);
 
-                        //Maintenant on colle toutes les cases vers le haut
+                        //Maintenant on colle toutes les cases vers le haut,
+                        //Comme précédemment
                         for(int i = ligne+1; i<taille-1; i++)
                         {
                             //Pour chaque case, on va chercher la premiere case non nulle qui la suit
@@ -116,7 +122,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
                                     break;
                                 }
                         }
-                        //On recommence à la première ligne
+                        //On recommence à la première ligne (On ne le fait plus, ça change le gameplay : dans ce cas une case pourrait fusionner plusieurs fois dans un coup)
                         //ligne = 0;
                     }
                 }
@@ -126,6 +132,7 @@ bool Plateau::Mouvement(int mouvement, int* score)
         }
         break;
 
+    //les autres coups sont symétriques
     case BAS:
         for(int col = 0; col<taille; col++)
         {
@@ -298,12 +305,16 @@ bool Plateau::Mouvement(int mouvement, int* score)
     return quelqueChoseAChange;
 }
 
+
+//Cette fonction sélectionne aléatoirement une case vide du plateau et y met un 2 ou un 4
+//Grâce aux pointeurs, on récupère les données de la case modifiée pour enregistrer les coups
 void Plateau::AjouterValeurAleatoire(int* positionX, int* positionY, int* valeur)
 {
     *positionX = -1;
     *positionY = -1;
     *valeur = -1;
 
+    //On commence par vérifier s'il reste une case libre
     bool ilResteUneCaseLibre = false;
     for (int i = 0; i<taille; i++)
         for(int j = 0; j<taille; j++)
@@ -311,13 +322,15 @@ void Plateau::AjouterValeurAleatoire(int* positionX, int* positionY, int* valeur
     if (!ilResteUneCaseLibre)
         return;
 
+    //On choisit la valeur de la case ajoutée
     int nombre = 4;
-
     if(rand()%100 < pourcentageDe2)
         nombre = 2;
 
     int ligne, colonne;
 
+    //On choisit des valeurs aléatoires pour la position de la case,
+    //jusqu'à ce qu'on tombe sur une case libre
     do{
     ligne = rand()%taille;
     colonne = rand()%taille;
@@ -336,7 +349,7 @@ int Plateau::getCase(int ligne, int colonne)
     return table[ligne][colonne];
 }
 
-int Plateau::getTaille()
+int Plateau::getTaille()//Non utilisée ici
 {
     return taille;
 }
