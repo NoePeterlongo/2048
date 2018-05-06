@@ -3,6 +3,9 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
 
 Window {
+
+    // On définit d'abord la taille de la fenêtre et sa couleur
+
     id: window
     visible: true
     width: 600
@@ -13,6 +16,9 @@ Window {
 
 
     Rectangle {
+
+        //Définition du rectangle dans lequel on place la grille de tuile représentant le plateau de jeu
+
         id: rectangle
         width: 430
         height: 430
@@ -23,6 +29,9 @@ Window {
         anchors.verticalCenter: parent.verticalCenter
 
         Grid {
+
+            //Grille de tuile représentant le plateau. Pour les touches du clavier, le focus est fait sur cette grille
+
             id: grid
             x: 92
             y: 252
@@ -152,6 +161,9 @@ Window {
         }
 
         Rectangle {
+
+            //Affichage du game over en fin de partie
+
             id: gameOver
             color: "#80fd2727"
             radius: 20
@@ -197,6 +209,9 @@ Window {
     }
 
     Rectangle {
+
+        //Zone d'affichage du score
+
         id: rectangle1
         x: 297
         y: 43
@@ -234,6 +249,9 @@ Window {
     }
 
     Rectangle {
+
+        //Zone d'affichage du record
+
         id: rectangle2
         x: 410
         y: 43
@@ -267,6 +285,8 @@ Window {
             verticalAlignment: Text.AlignVCenter
         }
     }
+
+    // Positionnement des boutons et affectation de leurs fonctions
 
     Button {
         id: buttonNouvellePartie
