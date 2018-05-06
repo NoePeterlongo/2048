@@ -11,11 +11,14 @@ Jeu::Jeu(QObject *parent) : QObject(parent)
 
     if(fopen(chemin, "r")==NULL)//Si le fichier n'existe pas
     {
-        fopen_s(&fichierSauvegarde, chemin, "w");
-        fprintf_s(fichierSauvegarde, "Meilleur score : 0");
+        //fopen_s(&fichierSauvegarde, chemin, "w");
+        //fprintf_s(fichierSauvegarde, "Meilleur score : 0");
+        fichierSauvegarde = fopen(chemin, "w");
+        fprintf(fichierSauvegarde, "Meilleur score : 0");
         fclose(fichierSauvegarde);
     }
-    fopen_s(&fichierSauvegarde, chemin, "r");
+    //fopen_s(&fichierSauvegarde, chemin, "r");
+    fichierSauvegarde = fopen(chemin, "r");
     //On récupère le meilleur score
     fscanf(fichierSauvegarde, "Meilleur score : %d", &meilleurScore);
     fclose(fichierSauvegarde);
@@ -123,7 +126,7 @@ void Jeu::NouveauCoup(int deplacement)
     {
         meilleurScore = score;
         fichierSauvegarde = fopen(chemin, "w");
-        fprintf_s(fichierSauvegarde, "Meilleur score : %d", meilleurScore);
+        fprintf(fichierSauvegarde, "Meilleur score : %d", meilleurScore);
         fclose(fichierSauvegarde);
         meilleurScoreChanged();
     }
